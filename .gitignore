@@ -1,5 +1,9 @@
 .DS_Store
+*.swp
 node_modules/
+misc/
+public/captcha/*.png
+public/cookies/*.txt
 
 lib-cov
 *.seed

@@ -1,12 +1,14 @@
 node12306
 =========
-### This project is dedicated to Young Chier.
-Now is always better than later,
-later is always better than never.
+### This project is dedicated to Young Chier([@铅笔橡皮头儿](http://weibo.com/youngchier)).
+Now is always better than later, later is always better than never.
 
 ### Description:
-这是一个12306的客户端，旨在帮12306提升用户体验以及提高购票成功率。
-（将）采用`PhantomJS`来架构API，前端用`Brunch`。使用shell script来安装。
+ 这是一个12306的客户端，旨在帮12306提升用户体验以及提高购票成功率。
+
+（将）采用[`PhantomJS`](http://phantomjs.org)来架构API，前端用[`Brunch`](http://brunch.io)。使用shell script来安装。
+
+ Detailed used open source projects & libraries will be listed below.
 
 ### Features:
 1.  比12306漂亮不知道多少倍的用户界面
@@ -15,9 +17,31 @@ later is always better than never.
 4.  API基于node， phantom，高并发且不会被识别出非正常访问
 5.  使用脚本自动安装
 
+### Router Scheme:
+...
+
 ### Todo:
 2013年 1月20日 星期日 18时40分21秒 CST
-5天搞定API，2天搞定Client，争取在大家订返程票的时候惠及大家！
 
+    5天搞定API，2天搞定Client，争取在大家订返程票的时候帮到大家！
+
+
+2013年 1月21日 星期一 00时20分53秒 CST
+    
+    需求：
+    * 登陆
+    >    API 获取验证码给前端
+    >
+    >    需测试是否cookie可重用，若不可重用则宜用OCR，如果没有可用则只能要求输入对应 并发数的验证码。
+    >
+    >    API 对应路由 `/auth`
+    * 查询
+    >    前端提供始发，到达，车次
+    >
+    >    API 对应路由 `/query`
+    * 选择
+    * ~~无需确认，选错自己去取消订单~~
+    * 提交
+    
 ### license:
 MIT
