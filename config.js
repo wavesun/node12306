@@ -5,9 +5,15 @@ module.exports = {
 
   phantom:{
    login:{
-     url: "http://www.douban.com/accounts/register",
-     captchaSelector: ".captcha-item img",  
+     url: "https://dynamic.12306.cn/otsweb/",
+     //url: "https://google.com",
+     captchaSelector: ".yz_r img",  
+     captchaSelectorCtx: '$("#main").contents()',
+     captchaSelectorIndex: "",
      captchaPath: "public/captcha"
-    },  
+    },
+
+    cookiePath: "public/cookies",
+
   },
 }

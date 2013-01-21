@@ -14,11 +14,11 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(app.router);
-  return app.use(express["static"](__dirname + '/public'));
+  app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function(){
-  return app.use(express.errorHandler({
+  app.use(express.errorHandler({
     dumpExceptions: true,
     showStack: true
   }));
