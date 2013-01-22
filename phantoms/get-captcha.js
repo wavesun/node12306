@@ -48,9 +48,9 @@ function reload(){
 page.open(url, opened);
 page.onLoadFinished = onLoadFinished;
 
-function onLoadFinished(){
+function onLoadFinished(status){
     var pos = evaluate(page, onLoad, selector, selectorCtx, selectorIndex);
-    console.log(pos);
+    console.log(sys.args[1]);
     if(!pos.hasOwnProperty("top"))
       return reload();
     page.clipRect = pos;
@@ -61,6 +61,9 @@ function onLoadFinished(){
 
 function onLoad(selector, ctx, index){
   var elem;
+  if(typeof $ == 'undefined'){
+    return document.head.innerHTML;
+  }
   if(ctx)
   {
     if(ctx.match(/\$/))
