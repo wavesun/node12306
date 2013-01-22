@@ -1,4 +1,4 @@
 module.exports = function(app){
-  app.get('/auth', require('./routes/auth'));
+  app.get('/captcha', require('./routes/captcha.js'));
   app.get('/query', function(){console.log('querying')});
 }
