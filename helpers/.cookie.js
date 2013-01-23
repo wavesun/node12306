@@ -8,14 +8,6 @@ if (typeof String.prototype.trimRight !== "function") {
         return this.replace(/\s+$/, "");
     };
 }
-if (typeof Array.prototype.map !== "function") {
-    Array.prototype.map = function(callback, thisArg) {
-        for (var i=0, n=this.length, a=[]; i<n; i++) {
-            if (i in this) a[i] = callback.call(thisArg, this[i]);
-        }
-        return a;
-    };
-}
 module.exports = function(cs/*cookie string*/) {
     var c = cs, v = 0, cookies = {};
     if (cs.match(/^\s*\$Version=(?:"1"|1);\s*(.*)/)) {

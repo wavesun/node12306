@@ -1,6 +1,7 @@
 var http = require('http'),
     fs = require('fs'),
     config = require('../config.js'),
+    cookie = require(config.helpers + 'cookie.format.js'),
     log = require(config.helpers + 'log.js')(__filename);
 
 module.exports = function(request, respond)
@@ -23,27 +24,7 @@ module.exports = function(request, respond)
     })
   
     res.on('end', function(){
-      //handle cookies
-      var setCookie = res.headers['set-cookie'], cookies = [], cookieString = "";
-      if(setCookie.length)
-        setCookie.forEach(function(v, i){
-          var cols, key, value, path;
-          cols = v.split(';');
-          if(cols.length == 2)
-          {
-            key = cols[0].split('=')[0];
-            value = cols[0].split("=")[1];
-            path = cols[1].split("=")[1];
-          }
-          cookies.push({
-            key: key,
-            value: value,
-            path: path,
-          });
-        })
-      cookies.forEach(function(v, i){
-        cookieString += 'dynamic.12306.cn\tFALSE\t' + v.path + '\tFALSE\t0\t' + v.key + '\t' + v.value + '\r';
-      })
+      var cookieString = cookie.setCookie2File(res.headers['set-cookie']);
       fs.writeFile(config.cookiePath + '/cookie.txt', cookieString, function(err){
         if(err)
           log('saving cookies error: ' + err);
