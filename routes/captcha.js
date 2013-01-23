@@ -24,14 +24,7 @@ module.exports = function(request, respond)
     })
   
     res.on('end', function(){
-      var cookieString = cookie.setCookie2File(res.headers['set-cookie']);
-      fs.writeFile(config.cookiePath + '/cookie.txt', cookieString, function(err){
-        if(err)
-          log('saving cookies error: ' + err);
-        else
-          log('successfully saved cookies');
-      });
-
+      var cookieString = cookie.setCookie2File(res.headers['set-cookie'], config.cookiePath + '/cookie.txt');
       f.end();
       log('Got captcha');
       respond.json(1);

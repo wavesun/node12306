@@ -1,17 +1,29 @@
-var config = require('../config.js'),
-    log = require(config.helpers + '/log.js')(__filename);
+/*
+* Handles cookies
+* -setCookie2File: setCookie, file
+    write cookies from response.header['set-cookie'] to file use std curl cookie file format
+* -file2Array: fileString 
+    read curl std cookie file to array
+* -array2String: array 
+    convert the array returned by file2Array to cookie string 
+*/
 
-module.exports.setCookie2File = function(setCookie){
+var fs = require('fs'),
+    config = require('../config.js'),
+    log = require(config.helpers + '/log.js')(__filename),
+    _string = require('underscore.string');
+
+module.exports.setCookie2File = function(setCookie, file){
   var cookies = [], fileString = "";
-  if(setCookie.length)
+  if(setCookie && setCookie.length)
     setCookie.forEach(function(v, i){
       var cols, key, value, path;
       cols = v.split(';');
       if(cols.length == 2)
       {
-        key = cols[0].split('=')[0];
-        value = cols[0].split("=")[1];
-        path = cols[1].split("=")[1];
+        key = _string.trim(cols[0].split('=')[0]);
+        value = _string.trim(cols[0].split("=")[1]);
+        path = _string.trim(cols[1].split("=")[1]);
       }
       cookies.push({
         key: key,
@@ -19,10 +31,21 @@ module.exports.setCookie2File = function(setCookie){
         path: path,
       });
     })
+
   cookies.forEach(function(v, i){
     fileString += 'dynamic.12306.cn\tFALSE\t' + v.path + '\tFALSE\t0\t' + v.key + '\t' + v.value + '\r';
   })
-  return fileString.substr(0, fileString.length - 2);
+
+  fileString = fileString.substr(0, fileString.length - 2);
+
+  fs.writeFile(file, fileString, function(err){ 
+    if(err) 
+      log('saving cookies error: ' + err); 
+    else 
+      log('successfully saved cookies'); 
+  });
+
+  return fileString;
 }
 
 module.exports.file2Array = function(fileString){
@@ -45,4 +68,17 @@ module.exports.file2Array = function(fileString){
       })
   })
   return cookies;
+}
+
+module.exports.array2String = function(array){
+  var cookieString = "";
+  if(!array instanceof Array)
+  {
+    log('Param passed to array2String is not an array', 2);
+    return ;
+  }
+  array.forEach(function(v, i){
+    cookieString += v.key + "=" + v.value + "; "
+  })
+  return cookieString;
 }
