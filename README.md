@@ -30,16 +30,8 @@ Now is always better than later, later is always better than never.
     
   需求：
   * 登陆
-      > API 获取验证码给前端
-      >
-      > 需测试是否cookie可重用，若不可重用则宜用OCR，如果没有可用则只能要求输入对应 并发数的验证码。
-      >
-      > API 对应路由 `/auth`
 
   * 查询
-      > 前端提供始发，到达，车次,time 
-      >
-      > API 对应路由 `/query`
 
   * 选择
 
@@ -52,6 +44,10 @@ Now is always better than later, later is always better than never.
 
   * 做好登陆API(关键是cookie部分)，验证cookie可重用性。
 
+:r! date(请yy这是一个时间戳谢谢)
 
-### license:
+  今日做好登陆。
+
+
+### License:
 MIT

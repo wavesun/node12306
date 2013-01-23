@@ -3,6 +3,7 @@
 node_modules/
 misc/
 public/captcha/*.png
+public/captcha/*.jpg
 public/cookies/*.txt
 
 lib-cov
