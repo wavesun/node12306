@@ -11,6 +11,7 @@
     "underscore-string": "*",
     "express": "*",
     "express-resource": "~1.0.0",
-    "phantomjs": "*"
+    "phantomjs": "*",
+    "cheerio": "~0.10.5"
   }
 }

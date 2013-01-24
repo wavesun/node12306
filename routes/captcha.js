@@ -6,6 +6,8 @@ var http = require('http'),
 
 module.exports = function(request, respond)
 {
+  if(global.login)
+    return respond.json(2);
   var options = {
     host: config.login.captchaHost, 
     path: config.login.captchaPath, 

@@ -2,6 +2,7 @@ var http = require('http'),
     qs = require('querystring'),
     fs = require('fs'),
     ps = require('child_process'),
+    cheerio = require('cheerio'),
     config = require('../config.js'),
     cookie = require(config.helpers + '/cookie.format.js'),
     log = require(config.helpers + '/log.js')(__filename);
@@ -56,17 +57,6 @@ module.exports = function(request, respond){
 }
 
 function postLogin(request, respond, rand, cookies){
-/*
-loginRand:756
-refundLogin:N
-refundFlag:Y
-loginUser.user_name:
-nameErrorFocus:
-user.password:
-passwordErrorFocus:
-randCode:rsxr
-randErrorFocus:
-*/  
   var usr = request.body.usr, pwd = request.body.pwd, captcha = request.body.captcha;
   var data = qs.stringify({
     "loginRand": rand,
@@ -99,10 +89,22 @@ randErrorFocus:
     })
     res.on('end', function(){
       if(res.headers['set-cookie'])
-        cookie.setCookie2File(res.headers['set-cookie'], config.cookiePath + '/cookie.txt'); 
-      respond.send(data);
+        cookie.setCookie2File(res.headers['set-cookie'], config.cookiePath + '/cookie.txt');
+      var $ = cheerio.load(data);
+      var title = $('title').html();
+      if(title == "系统消息")
+      {
+        log('Login success');
+        respond.json(1);
+        global.login = true;
+      }
+      else
+      {
+        log('Login error', 2);
+        respond.json(0);
+      }
     })
-  }) 
+  })
 
   req.write(data);
 

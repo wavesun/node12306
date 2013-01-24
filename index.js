@@ -1,21 +1,22 @@
 global.__basename = __dirname;
 
-express = require('express');
+var express = require('express')
 require('express-resource');
-config = require('./config');
+var config = require('./config');
 
-app = module.exports = express();
+var app = module.exports = express();
 
 /****
 * App Setup
 ****/
 app.configure(function(){
+  app.use(express.cookieParser());
+  app.use(express.cookieSession({secret: 'whateverItsOnYourOwnPC'}));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser());
   app.use(require('./middlewares/cors'));
-  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(app.router);
 });
 
 app.configure('development', function(){
