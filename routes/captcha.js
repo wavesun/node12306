@@ -11,7 +11,7 @@ module.exports = function(request, respond)
   var options = {
     host: config.login.captchaHost, 
     path: config.login.captchaPath, 
-    headers: {"user-agent": config.login.ua}
+    headers: {"user-agent": config.login.ua, "cookie": ""}
   };
 
   var req = http.request(options, function(res){

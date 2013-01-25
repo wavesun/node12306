@@ -91,17 +91,28 @@ function postLogin(request, respond, rand, cookies){
       if(res.headers['set-cookie'])
         cookie.setCookie2File(res.headers['set-cookie'], config.cookiePath + '/cookie.txt');
       var $ = cheerio.load(data);
-      var title = $('title').html();
+      var title = $('title').html(), helloScript, name = "";
       if(title == "系统消息")
       {
         log('Login success');
-        respond.json(1);
-        global.login = true;
+        helloScript = $('body script').eq(0);
+        if(!helloScript.length)
+          log('No hello script', 2);
+        else
+        {
+          name = helloScript.html().match(/'(.*)先生|小姐/);
+          if(name.length > 0)
+            name = name[1];
+          else
+            log('Name match error', 2);
+        }
+        log('Login User: ' + name);
+        respond.json({status: 1, username: name}); global.login = true;
       }
       else
       {
         log('Login error', 2);
-        respond.json(0);
+        respond.json({status: 0});
       }
     })
   })
