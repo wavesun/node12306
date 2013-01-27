@@ -20,4 +20,17 @@ module.exports = {
   },
 
   cookiePath: "public/cookies",
+  
+  headersBase: {
+    "Accept": "application/json, text/javascript, */*",
+    "Accept-Charset": "UTF-8,*;q=0.5",
+    "Accept-Language": "zh-CN,zh;q=0.8",
+    "Cache-Control": "no-cache",
+    "Connection": "keep-alive",
+    "Host": "dynamic.12306.cn",
+    "Origin": "https://dynamic.12306.cn",
+    "Pragma": "no-cache",
+    "Referer": "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=init",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17",
+  }
 }

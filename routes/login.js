@@ -83,7 +83,6 @@ function postLogin(request, respond, rand, cookies){
 
   var req = http.request(option, function(res){
     var data = "";
-    res.setEncoding('utf8');
     res.on('data', function(chunk){
       data += chunk; 
     })

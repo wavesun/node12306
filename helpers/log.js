@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = function(filename){
   var spliter = '/', arr, length;
   if(filename.indexOf('/') == -1)
@@ -17,10 +19,17 @@ module.exports = function(filename){
       case -1:
         status = "Fatal:";
       break;
+      case 5:
+        fs.writeFile('log/' + new Date().getTime() + '.log', msg ,function(err){
+          console.log(err);
+        })
       default:
         status = "Log:";
       break;
     }
-    console.log(status + '\t' + msg + '\t' + filename);
+    if(status !== 5)
+      console.log(status + '\t' + msg + '\t' + filename + '\n');
+    else // write log
+      console.log('Write log: ' + new Date().getTime());
   }
 }

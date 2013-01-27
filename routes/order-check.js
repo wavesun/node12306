@@ -1,0 +1,55 @@
+var http = require('http'),
+    qs = require('querystring'),
+    fs = require('fs'),
+    ps = require('child_process'),
+    _  = require('underscore'),
+    cheerio = require('cheerio'),
+    config = require('../config.js'),
+    cookie = require(config.helpers + '/cookie.format.js'),
+    getUserInfo = require('./get-user-info.js'),
+    log = require(config.helpers + '/log.js')(__filename);
+
+module.exports = function(cookieString, userInfo, ticketInfo, token, ticketStr){
+  var postData = {
+    "org.apache.struts.taglib.html.TOKEN": "6f7c7eb0cf703f6c6f0a3782a6621ebe",
+    "leftTicketStr": "O055300176M093300021",
+    "textfield": "中文或拼音首字母",
+    "checkbox1": "1",
+    "orderRequest.train_date": "2013-01-28",
+    "orderRequest.train_no": "5l0000G10821",
+    "orderRequest.station_train_code": "G108",
+    "orderRequest.from_station_telecode": "AOH",
+    "orderRequest.to_station_telecode": "VNP",
+    "orderRequest.seat_type_code": "",
+    "orderRequest.ticket_type_order_num": "",
+    "orderRequest.bed_level_order_num": "000000000000000000000000000000",
+    "orderRequest.start_time": "07": "53",
+    "orderRequest.end_time": "13": "23",
+    "orderRequest.from_station_name": "上海虹桥",
+    "orderRequest.to_station_name": "北京南",
+    "orderRequest.cancel_flag": "1",
+    "orderRequest.id_mode": "Y",
+    "passengerTickets": "O,0,3,余梦婷,1,320582199302174223,,N",
+    "oldPassengers": "余梦婷,1,320582199302174223",
+    "passenger_1_seat": "O",
+    "passenger_1_ticket": "3",
+    "oldPassengers": "",
+    "checkbox9": "Y",
+    "oldPassengers": "",
+    "checkbox9": "Y",
+    "oldPassengers": "",
+    "checkbox9": "Y",
+    "randCode": "96ev",
+    "orderRequest.reserve_flag": "A",
+    "tFlag": "dc",
+  }
+  var opt = {
+    host: 'dynamic.12306.cn',
+    path: '/otsweb/order/confirmPassengerAction.do?method=checkOrderInfo&rand=' + global.rand,
+    headers: _.extend(config.headersBase, {
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Cookie": cookieString,
+    }
+  }
+}

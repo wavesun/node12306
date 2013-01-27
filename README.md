@@ -11,7 +11,7 @@ node12306
 
  采用[`express`](http://http://expressjs.com/)来做API，前端用[`Brunch`](http://brunch.io)。使用shell script来安装。
 
- Client part of this project: [Node12306-Client](https://github.com/dotSlashLu/node12306-client), also hosted on [Bitbucket](https://bitbucket.org/lutashi/node12306-client)
+ Client part of this project,客户端部分: [Node12306-Client](https://github.com/dotSlashLu/node12306-client), also hosted on [Bitbucket](https://bitbucket.org/lutashi/node12306-client)
 
  Detailed used open source projects & libraries will be listed below.
 
@@ -31,39 +31,20 @@ node12306
 * run `npm install`
 * run `node .`
 
+## 12306.cn to Node12306 mapping
+1.Get captcha and cookies
+2.login
+3.query
+4.confirm order
+5.check order
+6.queue
+
 ## Todo:
-2013年 1月20日 星期日 18时40分21秒 CST
+2013年 1月28日 星期一 03时26分15秒 CST
 
-  5天搞定API，2天搞定Client，争取在大家订返程票的时候帮到大家！
+  globalize cookie string
 
-
-2013年 1月21日 星期一 00时20分53秒 CST
-    
-  需求：
-  * 登陆
-
-  * 查询
-
-  * 选择
-
-  * ~~无需确认，选错自己去取消订单~~
-  
-  * 提交
-    
-
-2013年 1月21日 星期一 05时28分25秒 CST
-
-  * 做好登陆API(关键是cookie部分)，验证cookie可重用性。
-
-
-:r! date(请yy这是一个时间戳谢谢)
-
-  > 今日做好登陆。
-
-
-2013年 1月24日 星期四 00时21分40秒 CST
-
-  > 登陆~~按时~~完成，今日完成查询和多进程.
+  confirm and queue
 
 ## License:
 MIT
