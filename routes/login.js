@@ -58,6 +58,7 @@ module.exports = function(request, respond){
 
 function postLogin(request, respond, rand, cookies){
   var usr = request.body.usr, pwd = request.body.pwd, captcha = request.body.captcha;
+  global.captcha = captcha;
   var data = qs.stringify({
     "loginRand": rand,
     "refundLogin": 'N',
@@ -106,7 +107,11 @@ function postLogin(request, respond, rand, cookies){
             log('Name match error', 2);
         }
         log('Login User: ' + name);
-        respond.json({status: 1, username: name}); global.login = true;
+        respond.json({status: 1, username: name}); 
+        
+        //globalize variables
+        global.login = true;
+        global.cookieString = cookieString;
       }
       else
       {

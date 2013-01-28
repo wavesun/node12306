@@ -11,18 +11,11 @@ var http = require('http'),
 var cookiePath = config.cookiePath;
 
 module.exports = function(request, respond){
-  fs.readFile(cookiePath + '/cookie.txt', 'utf-8', function(err, data){
-      if(err)
-        return log('read cookie file error', 2);
-      cookies = cookie.file2Array(data);
-      cookieString = cookie.array2String(cookies);
-
-      query(cookieString, request, respond);
-  })
+  query(request, respond);
 }
 
 //query left tickets
-function query(cookieString,request, respond)
+function query(request, respond)
 {
   
   /* query params:
@@ -61,7 +54,7 @@ function query(cookieString,request, respond)
       'Referer': 'https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=init',
       'X-Requested-With': 'XMLHttpRequest',
       //'Content-Length': queryData.length,
-      'Cookie': cookieString
+      'Cookie': global.cookieString
     }
   }
   
@@ -90,7 +83,7 @@ function query(cookieString,request, respond)
         if(ticketInfo.length > 0)
         {
           log('Yeeeea!')
-          require('./get-ticket.js')(cookieString, ticketInfo, request, respond); 
+          require('./get-ticket.js')(ticketInfo, request, respond); 
         }
         
         //console.log(JSON.stringify(ticketInfo));

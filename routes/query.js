@@ -79,7 +79,9 @@ module.exports = function(request, respond){
     //globalize vars to use in confirmation action
     global._date = criteria.date;
     global._fromStationCode = fromStation[0].code;
+    global._fromStationName = fromStation[0].name;
     global._toStationCode = toStation[0].code;
+    global._toStationName = toStation[0].name;
 
     var req = http.request(opt, function(res){
       var data = "";

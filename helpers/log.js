@@ -20,16 +20,20 @@ module.exports = function(filename){
         status = "Fatal:";
       break;
       case 5:
-        fs.writeFile('log/' + new Date().getTime() + '.log', msg ,function(err){
-          console.log(err);
+        var logFile = new Date().getTime()
+        msg = filename + '\n\n' + msg;
+        fs.writeFile('log/' + logFile + '.log', msg ,function(err){
+          if(err)
+            console.log(err);
+          else
+            console.log('Wrote log file:' + logFile);
         })
+        return ;
       default:
         status = "Log:";
       break;
     }
-    if(status !== 5)
-      console.log(status + '\t' + msg + '\t' + filename + '\n');
-    else // write log
-      console.log('Write log: ' + new Date().getTime());
+    
+    console.log(status + '\t' + msg + '\t' + filename + '\n');  
   }
 }

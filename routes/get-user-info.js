@@ -1,20 +1,15 @@
 var http = require('http'),
-    qs = require('querystring'),
-    fs = require('fs'),
-    ps = require('child_process'),
-    _  = require('underscore'),
+    _ = require('underscore'),
     config = require('../config.js'),
-    cookie = require(config.helpers + '/cookie.format.js'),
-    getTicketInfo = require(config.helpers + '/get-ticket-info.js'),
     log = require(config.helpers + '/log.js')(__filename);
 
-module.exports = function(cookieString, callback){
+module.exports = function(ticketInfo, callback){
   var opt={
     host: "dynamic.12306.cn",
     path: "/otsweb/order/confirmPassengerAction.do?method=getpassengerJson",
     headers: {
       'User-Agent': config.login.ua,
-      'Cookie': cookieString,
+      'Cookie': global.cookieString,
       'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
       'Accept-Charset': "UTF-8,*;q=0.5",
       'Accept-Encoding': 'gzip,deflate,sdch',
@@ -36,7 +31,7 @@ module.exports = function(cookieString, callback){
       data = JSON.parse(data);
       data = data.passengerJson[0];
       console.log(data);
-      callback.call(null, data);
+      callback.call(null, data, ticketInfo);
     })
   })
 

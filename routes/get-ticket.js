@@ -8,7 +8,7 @@ var http = require('http'),
     getUserInfo = require('./get-user-info.js'),
     log = require(config.helpers + '/log.js')(__filename);
 
-module.exports = function(cookieString, tickets, request, respond){
+module.exports = function(tickets, request, respond){
 /*
 station_train_code:G106
 train_date:2013-01-28
@@ -41,6 +41,7 @@ mmStr:756E8008D2F857065C1A4FC98D04E7BBF1733035019F8AD2C8632351
 
   //post confirm
   var ticket = tickets[0], formData = ticket.formData;
+  log('Trying ticket:' + JSON.stringify(ticket));
   var reqData = qs.stringify({
     station_train_code: formData[0],
     train_date: global._date,
@@ -72,7 +73,7 @@ mmStr:756E8008D2F857065C1A4FC98D04E7BBF1733035019F8AD2C8632351
     host: "dynamic.12306.cn",
     path: "/otsweb/order/querySingleAction.do?method=submutOrderRequest",
     headers: {
-      'Cookie': cookieString,
+      'Cookie': global.cookieString,
       'Referer': 'https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=init',
       'Origin': 'https://dynamic.12306.cn',
       'User-Agent': config.login.ua,
@@ -99,10 +100,10 @@ mmStr:756E8008D2F857065C1A4FC98D04E7BBF1733035019F8AD2C8632351
     })
 
     res.on('end', function(){
-      getUserInfo(cookieString, function(userInfo){
-        log('Got User Info: ' + userInfo);
+      require('./get-user-info.js')(ticket, function(userInfo, ticketInfo){
+        log('Got User Info: ' + JSON.stringify(userInfo));
         log('Confirming Order...');
-        require('./order-init.js')(cookieString, userInfo, request, respond);
+        require('./order-init.js')(userInfo, ticketInfo, request, respond);
       })
     })
 
@@ -120,5 +121,4 @@ mmStr:756E8008D2F857065C1A4FC98D04E7BBF1733035019F8AD2C8632351
 
 function test(token, ticketStr){
   //Request URL:https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=checkOrderInfo&rand=96ev
- /c
 }

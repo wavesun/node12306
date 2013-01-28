@@ -24,7 +24,7 @@ module.exports = function(data){
       else if(i >= 5 && i <= 15)
         arr[i] = parseInt(arr[i])
     })
-    if(arr[16].match(/getSelected\('(.*)'\)/))
+    if(arr && arr.length > 16 && arr[16].match(/getSelected\('(.*)'\)/))
     {
       ticketInfo.push({
         trainID: id,

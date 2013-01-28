@@ -6,12 +6,15 @@ var http = require('http'),
 
 module.exports = function(request, respond)
 {
-  if(global.login)
+  if(respond && global.login)
     return respond.json(2);
+  cookies = "";
+  if(global.cookieString)
+    cookies = global.cookieString;
   var options = {
     host: config.login.captchaHost, 
     path: config.login.captchaPath, 
-    headers: {"user-agent": config.login.ua, "cookie": ""}
+    headers: {"user-agent": config.login.ua, "cookie": cookies}
   };
 
   var req = http.request(options, function(res){
@@ -26,16 +29,19 @@ module.exports = function(request, respond)
     })
   
     res.on('end', function(){
-      var cookieString = cookie.setCookie2File(res.headers['set-cookie'], config.cookiePath + '/cookie.txt');
+      if(res.headers['set-cookie'])
+        var cookieString = cookie.setCookie2File(res.headers['set-cookie'], config.cookiePath + '/cookie.txt');
       f.end();
       log('Got captcha');
-      respond.json(1);
+      if(respond)
+        respond.json(1);
     })
   });
   
   req.on('error', function(err){
     console.log(err);
-    respond.json(0);
+    if(respond)
+      respond.json(0);
   })
   
   req.end();

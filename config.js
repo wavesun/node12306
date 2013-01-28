@@ -22,7 +22,6 @@ module.exports = {
   cookiePath: "public/cookies",
   
   headersBase: {
-    "Accept": "application/json, text/javascript, */*",
     "Accept-Charset": "UTF-8,*;q=0.5",
     "Accept-Language": "zh-CN,zh;q=0.8",
     "Cache-Control": "no-cache",
