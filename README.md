@@ -11,7 +11,7 @@ node12306
 
  采用[`express`](http://http://expressjs.com/)来做API，前端用[`Brunch`](http://brunch.io)。使用shell script来安装。
 
- Client part of this project,客户端部分: [Node12306-Client](https://github.com/dotSlashLu/node12306-client), also hosted on [Bitbucket](https://bitbucket.org/lutashi/node12306-client)
+~~Client part of this project,客户端部分: [Node12306-Client](https://github.com/dotSlashLu/node12306-client), also hosted on [Bitbucket](https://bitbucket.org/lutashi/node12306-client)~~ Now client part has been integrated into this project in `/client`
 
  Detailed used open source projects & libraries will be listed below.
 
@@ -23,6 +23,9 @@ node12306
 5.  使用脚本自动安装
 
 ## Router Scheme:
+*	GET '/'	=>	client homepage
+*	…
+
 (Please reference `router.js` before I have time writing this sec)
 ...
 
@@ -38,13 +41,6 @@ node12306
 4.confirm order
 5.check order
 6.queue
-
-## Todo:
-2013年 1月28日 星期一 03时26分15秒 CST
-
-  globalize cookie string
-
-  confirm and queue
 
 ## License:
 MIT

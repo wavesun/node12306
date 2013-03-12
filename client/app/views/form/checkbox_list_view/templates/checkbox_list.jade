@@ -1,0 +1,11 @@
+- var text
+if selectAll
+  - text = "取消"
+else
+  - text = "全選"
+
+a(href="#").btn.pull-right
+  i.icon-check
+  font
+    = text
+.form-checkbox-list

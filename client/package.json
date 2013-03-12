@@ -1,0 +1,34 @@
+{
+  "name": "Node12306-Client",
+  "description": "This is the client part of the Node12306(https://github.com/dotSlashLu/node12306). The project is dedicated to Young Chier.",
+  "version": "0.0.1",
+  "author": "dotSlashLu <dotslash.lu@gmail.com>",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:lutashi/node12306.git"
+  },
+  "engines": {
+    "node": "~0.6.10 || 0.8 || 0.9"
+  },
+  "scripts": {
+    "start": "brunch watch --server",
+    "test": "brunch test"
+  },
+  "dependencies": {
+    "javascript-brunch": ">= 1.0 < 1.5",
+    "coffee-script-brunch": ">= 1.0 < 1.5",
+    "css-brunch": ">= 1.0 < 1.5",
+    "stylus-brunch": ">= 1.0 < 1.5",
+    "handlebars-brunch": ">= 1.0 < 1.5",
+    "uglify-js-brunch": ">= 1.0 < 1.5",
+    "clean-css-brunch": ">= 1.0 < 1.5",
+    "jade-brunch": ">= 1.0 < 1.5",
+    "auto-reload-brunch": "~1.3.2"
+  },
+  "devDependencies": {
+    "chai": "1.2.0",
+    "sinon": "1.4.2",
+    "sinon-chai": "2.1.2"
+  }
+}

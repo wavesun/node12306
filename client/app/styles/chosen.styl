@@ -1,0 +1,22 @@
+@import 'nib'
+
+/* CHZN reset few styles */
+.chzn-container-single .chzn-single {
+  background:#FFF;
+  border: 1px solid #bbb;
+  box-shadow:none;
+}
+.chzn-container-active .chzn-single {
+  background:#fff;
+}
+
+/** Fix for Search Dropdown Border **/
+.chzn-container {
+  .chzn-search {
+    input:focus {
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+  }
+}

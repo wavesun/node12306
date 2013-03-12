@@ -1,0 +1,11 @@
+#login-form(style="")
+  img.logo(src="/images/logo.png")
+  .clearfix(style="margin-top:15px")
+    input.span4.tip(type="text", name="usr", placeholder="用户名", data-placement="left", title="用户名")
+  .clearfix
+    input.span4.tip(type="password", name="pwd", placeholder="密码", data-placement="left", title="密码")
+  .clearfix
+    input.span3.tip(type="text", name="captcha", placeholder="验证码", data-placement="left", title="验证码")
+    img#captcha.pull-right.tip(title="点击刷新", data-placement="right")
+  .clearfix
+  #login-btn.btn.pull-right(style="margin:0px auto")  登入

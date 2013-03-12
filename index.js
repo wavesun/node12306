@@ -6,16 +6,14 @@ var config = require('./config');
 
 var app = module.exports = express();
 
-/****
-* App Setup
-****/
+//App setup
 app.configure(function(){
   app.use(express.cookieParser());
   app.use(express.cookieSession({secret: 'whateverItsOnYourOwnPC'}));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(require('./middlewares/cors'));
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/client/public'));
   app.use(app.router);
 });
 
@@ -30,13 +28,9 @@ app.configure('production', function() {
   return app.use(express.errorHandler());
 });
 
-/*
-* init routers
-*/
+//init routers
 require('./router')(app);
 
-/*
-* start server
-*/
+//start server
 app.listen(config.web.port);
-console.log("Express server listening on port %d in %s mode", config.web.port, app.settings.env)
+console.log("Express server listening on port %d in %s mode.", config.web.port, app.settings.env)

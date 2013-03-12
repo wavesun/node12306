@@ -1,0 +1,5 @@
+{{#camelize}}{{name}}{{/camelize}} = require 'models/{{name}}'
+
+module.exports = class {{#camelize}}{{pluralName}}{{/camelize}} extends Backbone.Collection
+
+  model: {{#camelize}}{{name}}{{/camelize}}

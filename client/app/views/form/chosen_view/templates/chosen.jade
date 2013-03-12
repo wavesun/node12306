@@ -1,0 +1,15 @@
+select.chzn-select(name=name, data-placeholder=placeholder, class="#{span}", multiple=multiple, disabled=disabled)
+  unless multiple
+    option
+  if groupBy
+    - var groupCollection = _.groupBy(collection, groupBy);
+    for collection, key in groupCollection
+      optgroup(label=key)
+        for model in collection
+          - var isSelected = _.include(selected, model[value]);
+          option(value=model[value], selected=isSelected)= model[text]
+  else
+    for model in collection
+      - var isSelected = _.include(selected, model[value]);
+      option(value=model[value], selected=isSelected)= model[text]
+

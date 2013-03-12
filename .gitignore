@@ -6,6 +6,9 @@ public/captcha/*.png
 public/captcha/*.jpg
 public/cookies/*.txt
 
+client/public/
+client/node_modules/
+
 lib-cov
 *.seed
 *.log

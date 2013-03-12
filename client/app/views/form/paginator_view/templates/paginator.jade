@@ -1,0 +1,49 @@
+//- - console.log(totalCount)
+.pagination
+  if totalPages > 1
+    ul
+      if currentPage == 1
+        li.disabled
+          a(href="#").first 首頁
+        li.disabled
+          a(href="#").previous 上頁
+      else
+        li
+          a(href="#").first 首頁
+        li 
+          a(href="#").previous 上頁
+
+      - for(var num = 1;num<=totalPages;num++)
+        if currentPage == 1 && num <= 3
+          if currentPage == num
+            li.active
+              a(href="#").number.active= num
+          else
+            li
+              a(href="#").number.active= num
+        else if currentPage == parseInt(totalPages) && num >= parseInt(totalPages) - 2
+          if currentPage == num
+            li.active
+              a(href="#").number.active= num
+          else
+            li
+              a(href="#").number.active= num
+        else if parseInt(currentPage) - 1 <= num && num <= parseInt(currentPage) + 1
+          if currentPage == num
+            li.active
+              a(href="#").number.active= num
+          else
+            li
+              a(href="#").number.active= num
+      if currentPage == totalPages
+        li.disabled
+          a(href="#").next 下頁
+        li.disabled
+          a(href="#").last 尾頁
+      else
+        li
+        a(href="#").next 下頁
+        li 
+          a(href="#").last 尾頁
+    span
+      共 #{totalCount} 條記錄，分 #{totalPages} 頁

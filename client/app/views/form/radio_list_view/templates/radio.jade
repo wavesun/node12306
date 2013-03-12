@@ -1,0 +1,8 @@
+- var checked
+if selected
+  - checked = true
+else
+  - checked = false
+
+input(type="radio",name="#{name}",id="check-item-#{name}#{model[value]}",value="#{model[value]}",checked=checked) 
+= model[text]
