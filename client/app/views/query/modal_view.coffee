@@ -11,5 +11,5 @@ module.exports = class ModalView extends Backbone.View
     @$el.append @template()
     datePicker = new DatepickerView
       placeholder: "选择乘车时间"
-    @$("#logo").after datePicker.$el
+    @$("#input-date").html datePicker.$el
     return @

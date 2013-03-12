@@ -1,10 +1,24 @@
 #logo(style="margin:10px auto")
 .clearfix
-span 乘车站:
-input.span2.station(name="from", placeholder="乘车站")
-sapn 到达站:
-input.span2.station(name="to", placeholder="到达站")
-br
+.control-group
+  label.control-label(for="date") 乘车时间:
+  #input-date.controls
+.control-group
+  label.control-label(for="from") 乘车站:
+  .controls
+    .input-prepend
+      span.add-on
+        i.icon-map-marker
+      input.span2.station(name="from",type="text",placeholder="I'm here")
+
+.control-group
+  label.control-label(for="to") 到达站: 
+  .controls
+    .input-prepend
+      span.add-on
+        i.icon-home
+      input.span2.station(name="to",type="text",placeholder="Home's here")
+
 .clearfix
-.confirm-query.btn.btn-success.pull-right 确认
+.confirm-query.btn.pull-right &nbsp;&nbsp;确认&nbsp;&nbsp;
 .clearfix

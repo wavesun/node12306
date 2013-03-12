@@ -1,6 +1,6 @@
 #logo(style="margin:10px auto")
 .clearfix
-span 请选择坐席(请尽量确认所选车次有该坐席提供)
+坐席:
 .btn-group.seat-type(data-toggle="buttons-checkbox",style="text-align:center")
   button.btn(type="button",value="3") 硬卧
   button.btn(type="button",value="0") 二等
@@ -9,7 +9,10 @@ span 请选择坐席(请尽量确认所选车次有该坐席提供)
   button.btn(type="button",value="2") 软座
   button.btn(type="button",value="P") 特等
   button.btn(type="button",value="9") 商务
-
-#re-search.btn 重新选择乘车日期
-&nbsp;&nbsp;
-#confirm-order.btn.btn-primary 开始订票...
+br
+.pull-right
+  #re-search.btn.tip(title="重新选择日期地点")
+    i.icon-circle-arrow-left
+  &nbsp;&nbsp;
+  #confirm-order.btn.btn-primary 开始订票...
+.clearfix

@@ -14,6 +14,7 @@ module.exports = class ConfirmModalView extends Backbone.View
     @collection = @options.collection
     @date = @options.date
     @render()
+    @$('.tip').tooltip()
 
   render: =>
     @$el.html @template()
@@ -34,8 +35,7 @@ module.exports = class ConfirmModalView extends Backbone.View
       seatTypt: seatType
       trains: @collection.toJSON()
 
-    
-    console.log data
+    return bootbox.alert('还没有选择任何车次呢~') unless data.trains.length > 0
     $.ajax
       url: config.api.baseUrl + '/queryleft'
       data: data
